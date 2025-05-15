@@ -16,6 +16,8 @@ loggingInterceptor = "4.12.0"
 navigationCompose = "2.8.0-alpha10"
 kotlinSerialization = "1.8.0"
 
+room_version = "2.7.1"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -38,6 +40,9 @@ logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-intercep
 
 jetbrains-compose-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref= "navigationCompose"}
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+
+android-room = {group = "androidx.room", name = "room-runtime", version.ref = "room_version"}
+android-room-compiler = {group = "androidx.room", name = "room-compiler", version.ref = "room_version"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -106,4 +106,12 @@ dependencies {
     implementation(libs.jetbrains.compose.navigation)
 
     implementation(libs.kotlinx.serialization.json)
+
+    val room_version = "2.7.1"
+
+    implementation(libs.android.room)
+
+    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    // See Add the KSP plugin to your project
+    ksp(libs.android.room.compiler)
 }

@@ -24,8 +24,6 @@ import com.aashushaikh.movieappcompose.auth.presentation.AuthViewModel
 import com.aashushaikh.movieappcompose.auth.presentation.LoginScreen
 import com.aashushaikh.movieappcompose.movie.presentation.movie_detail_screen.MovieDetailScreen
 import com.aashushaikh.movieappcompose.movie.presentation.movie_list_sreen.MovieListScreenRoot
-import com.aashushaikh.movieappcompose.movie.presentation.navigation.AppNavigation
-import com.aashushaikh.movieappcompose.movie.presentation.navigation.Screen
 import com.aashushaikh.movieappcompose.ui.theme.MovieAppComposeTheme
 import com.aashushaikh.movieappcompose.utils.Route
 import dagger.hilt.android.AndroidEntryPoint

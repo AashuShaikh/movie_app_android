@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import androidx.room.Room
 import com.aashushaikh.movieappcompose.auth.data.token_management.AccessTokenInterceptor
 import com.aashushaikh.movieappcompose.auth.data.token_management.AuthAuthenticator
 import com.aashushaikh.movieappcompose.auth.data.token_management.JwtTokenDataStore
@@ -16,6 +17,8 @@ import com.aashushaikh.movieappcompose.auth.data.remote.AuthService
 import com.aashushaikh.movieappcompose.auth.domain.JwtTokenManager
 import com.aashushaikh.movieappcompose.auth.data.remote.RefreshTokenService
 import com.aashushaikh.movieappcompose.auth.domain.repositories.AuthRepository
+import com.aashushaikh.movieappcompose.movie.data.local.MovieDao
+import com.aashushaikh.movieappcompose.movie.data.local.MovieDatabase
 import com.aashushaikh.movieappcompose.movie.data.remote.MovieService
 import com.aashushaikh.movieappcompose.movie.data.repositories.MovieRepositoryImpl
 import com.aashushaikh.movieappcompose.movie.domain.repositories.MovieRepository
@@ -46,9 +49,10 @@ class AppModule {
     @Provides
     @Singleton
     fun provideMovieRepository(
-        @AuthenticatedService movieService: MovieService
+        @AuthenticatedService movieService: MovieService,
+        movieDao: MovieDao
     ): MovieRepository {
-        return MovieRepositoryImpl(movieService)
+        return MovieRepositoryImpl(movieService, movieDao)
     }
 
     @Provides
@@ -154,6 +158,21 @@ class AppModule {
             .client(okHttpClient)
             .build()
             .create(RefreshTokenService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext appContext: Context): MovieDatabase {
+        return Room.databaseBuilder(
+            appContext,
+            MovieDatabase::class.java,
+            "movie_database" // Name of your database
+        ).build()
+    }
+
+    @Provides
+    fun provideMovieDao(movieDatabase: MovieDatabase): MovieDao {
+        return movieDatabase.movieDao()
     }
 
 }
