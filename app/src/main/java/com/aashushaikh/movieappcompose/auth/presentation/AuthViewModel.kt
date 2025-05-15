@@ -35,13 +35,41 @@ class AuthViewModel @Inject constructor(
 
     fun onEvent(event: AuthUiEvents){
         when(event){
-            is AuthUiEvents.Login -> {
+            is AuthUiEvents.OnLogin -> {
                 login(email = event.email, password = event.password)
+                updateEmail("")
+                updatePassword("")
             }
 
-            is AuthUiEvents.Register -> {
+            is AuthUiEvents.OnRegister -> {
                 register(email = event.email, password = event.password)
+                updateEmail("")
+                updatePassword("")
             }
+
+            is AuthUiEvents.OnEmailChanged -> {
+                updateEmail(event.email)
+            }
+            is AuthUiEvents.OnPasswordChanged -> {
+                updatePassword(event.password)
+            }
+            is AuthUiEvents.TogglePasswordVisibility -> {
+                _authState.update {
+                    it.copy(isPasswordVisible = !it.isPasswordVisible)
+                }
+            }
+        }
+    }
+
+    private fun updatePassword(password: String) {
+        _authState.update {
+            it.copy(password = password)
+        }
+    }
+
+    private fun updateEmail(email: String) {
+        _authState.update {
+            it.copy(email = email)
         }
     }
 

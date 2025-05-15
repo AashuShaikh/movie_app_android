@@ -22,6 +22,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.aashushaikh.movieappcompose.auth.presentation.AuthViewModel
 import com.aashushaikh.movieappcompose.auth.presentation.LoginScreen
+import com.aashushaikh.movieappcompose.auth.presentation.LoginScreenRoot
+import com.aashushaikh.movieappcompose.auth.presentation.RegisterScreenRoot
 import com.aashushaikh.movieappcompose.movie.presentation.movie_detail_screen.MovieDetailScreen
 import com.aashushaikh.movieappcompose.movie.presentation.movie_list_sreen.MovieListScreenRoot
 import com.aashushaikh.movieappcompose.ui.theme.MovieAppComposeTheme
@@ -54,7 +56,10 @@ class MainActivity : ComponentActivity() {
                             startDestination = Route.Login
                         ) {
                             composable<Route.Login> {
-                                LoginScreen(authViewModel = authViewModel)
+                                LoginScreenRoot(authViewModel = authViewModel, onGotoRegisterClick = {})
+                            }
+                            composable<Route.Register> {
+                                RegisterScreenRoot(authViewModel = authViewModel, onGotoLoginClick = {})
                             }
                         }
 

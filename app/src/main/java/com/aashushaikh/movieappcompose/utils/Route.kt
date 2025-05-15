@@ -13,7 +13,8 @@ sealed interface Route {
     @Serializable
     data object Login: Route
 
-    //in future register
+    @Serializable
+    data object Register: Route
 
     @Serializable
     data object MovieList: Route

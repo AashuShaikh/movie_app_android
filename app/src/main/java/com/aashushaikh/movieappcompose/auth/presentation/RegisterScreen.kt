@@ -49,25 +49,24 @@ import com.aashushaikh.movieappcompose.utils.DesertWhite
 import com.aashushaikh.movieappcompose.utils.SandYellow
 
 @Composable
-fun LoginScreenRoot(
+fun RegisterScreenRoot(
     authViewModel: AuthViewModel,
-    onGotoRegisterClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onGotoLoginClick: () -> Unit,
 ) {
     val authState = authViewModel.authState.collectAsStateWithLifecycle()
 
-    LoginScreen(
+    RegisterScreen(
         authState = authState.value,
         onEvent = authViewModel::onEvent,
-        onGotoRegisterClick = onGotoRegisterClick
+        onGotoLoginClick = onGotoLoginClick
     )
 }
 
 @Composable
-fun LoginScreen(
+fun RegisterScreen(
     authState: AuthUiState,
     onEvent: (AuthUiEvents) -> Unit,
-    onGotoRegisterClick: () -> Unit
+    onGotoLoginClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -80,7 +79,7 @@ fun LoginScreen(
             painter = painterResource(R.drawable.app_logo),
             modifier = Modifier.size(250.dp),
             contentDescription = "",
-            contentScale = ContentScale.FillWidth
+            contentScale = ContentScale.FillBounds
         )
         Surface(
             modifier = Modifier.fillMaxWidth().widthIn(300.dp)
@@ -160,7 +159,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedButton(
-                    onClick = {onEvent(AuthUiEvents.OnLogin(
+                    onClick = {onEvent(AuthUiEvents.OnRegister(
                         email = authState.email,
                         password = authState.password
                     ))},
@@ -170,23 +169,23 @@ fun LoginScreen(
                         .padding(horizontal = 50.dp),
                 ) {
                     Text(
-                        text = "Login",
+                        text = "Register",
                         color = MaterialTheme.colorScheme.onSurface
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Row {
                     Text(
-                        text = "Not Registered?",
+                        text = "Already Registered?",
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.width(2.dp))
                     Text(
-                        text = "Click Here to Register",
+                        text = "Click Here to Login",
                         color = Color.Blue,
                         modifier = Modifier
                             .clickable {
-                                onGotoRegisterClick()
+                                onGotoLoginClick()
                             }
                     )
                 }
@@ -197,11 +196,11 @@ fun LoginScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun LoginPreview(modifier: Modifier = Modifier) {
-    LoginScreen(
+fun RegisterPreview(modifier: Modifier = Modifier) {
+    RegisterScreen(
         authState = AuthUiState(),
         onEvent = { },
-        onGotoRegisterClick = {}
+        onGotoLoginClick = {}
     )
 }
 
