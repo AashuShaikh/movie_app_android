@@ -22,7 +22,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -52,7 +55,6 @@ import com.aashushaikh.movieappcompose.utils.SandYellow
 fun LoginScreenRoot(
     authViewModel: AuthViewModel,
     onGotoRegisterClick: () -> Unit,
-    modifier: Modifier = Modifier
 ) {
     val authState = authViewModel.authState.collectAsStateWithLifecycle()
 
@@ -83,7 +85,9 @@ fun LoginScreen(
             contentScale = ContentScale.FillWidth
         )
         Surface(
-            modifier = Modifier.fillMaxWidth().widthIn(300.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .widthIn(300.dp)
                 .height(IntrinsicSize.Min)
                 .padding(horizontal = 16.dp),
             color = DesertWhite,
@@ -91,13 +95,17 @@ fun LoginScreen(
             border = BorderStroke(4.dp, color = SandYellow)
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth().widthIn(max = 300.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .widthIn(max = 300.dp)
                     .padding(vertical = 16.dp),
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
                     value = authState.email,
                     onValueChange = {onEvent(AuthUiEvents.OnEmailChanged(it))},
                     placeholder = {
@@ -105,10 +113,15 @@ fun LoginScreen(
                     },
                     trailingIcon = {
                         if(authState.email.isNotBlank()){
-                            Icon(
-                                imageVector = Icons.Default.Clear,
-                                contentDescription = "Clear Email"
-                            )
+                            IconButton(
+                                onClick = {onEvent(AuthUiEvents.OnEmailChanged(""))}
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Clear,
+                                    contentDescription = "Clear Email",
+                                    tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.66f)
+                                )
+                            }
                         }
                     },
                     leadingIcon = {
@@ -127,7 +140,9 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
                     value = authState.password,
                     onValueChange = {onEvent(AuthUiEvents.OnPasswordChanged(it))},
                     placeholder = {
@@ -138,9 +153,22 @@ fun LoginScreen(
                     } else {
                         PasswordVisualTransformation()
                     },
-//                    trailingIcon = {
-//                        val icon = if(authState.isPasswordVisible) Icons.Default
-//                    },
+                    trailingIcon = {
+                        IconButton(
+                            onClick = {onEvent(AuthUiEvents.TogglePasswordVisibility(!authState.isPasswordVisible))}
+                        ) {
+                            val icon = if(authState.isPasswordVisible) {
+                                Icons.Default.VisibilityOff
+                            } else {
+                                Icons.Default.Visibility
+                            }
+                            Icon(
+                                imageVector = icon,
+                                contentDescription = "Password visibility",
+                                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.66f)
+                            )
+                        }
+                    },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Default.Lock,

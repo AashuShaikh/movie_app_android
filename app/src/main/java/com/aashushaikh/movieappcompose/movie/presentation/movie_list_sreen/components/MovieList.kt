@@ -30,7 +30,7 @@ fun MovieList(
     ) {
         items(
             items = movies,
-            key = { movie -> movie.id }
+            key = { movie -> movie.movieId }
         ){movie ->
             MovieListItem(
                 movie = movie,

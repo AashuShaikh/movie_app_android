@@ -1,4 +1,4 @@
-package com.aashushaikh.movieappcompose.movie.data.local
+package com.aashushaikh.movieappcompose.movie.data.local.movie
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -20,5 +20,5 @@ interface MovieDao {
     suspend fun getMovieById(movieId: Int): MovieEntity?
 
     @Query("SELECT * FROM movies")
-    suspend fun getAllMovies(): List<MovieEntity>?
+    suspend fun getAllMovies(): List<MovieEntity>
 }

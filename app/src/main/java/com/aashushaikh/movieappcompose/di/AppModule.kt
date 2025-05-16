@@ -17,8 +17,9 @@ import com.aashushaikh.movieappcompose.auth.data.remote.AuthService
 import com.aashushaikh.movieappcompose.auth.domain.JwtTokenManager
 import com.aashushaikh.movieappcompose.auth.data.remote.RefreshTokenService
 import com.aashushaikh.movieappcompose.auth.domain.repositories.AuthRepository
-import com.aashushaikh.movieappcompose.movie.data.local.MovieDao
+import com.aashushaikh.movieappcompose.movie.data.local.movie.MovieDao
 import com.aashushaikh.movieappcompose.movie.data.local.MovieDatabase
+import com.aashushaikh.movieappcompose.movie.data.local.bookmarks.BookmarkDao
 import com.aashushaikh.movieappcompose.movie.data.remote.MovieService
 import com.aashushaikh.movieappcompose.movie.data.repositories.MovieRepositoryImpl
 import com.aashushaikh.movieappcompose.movie.domain.repositories.MovieRepository
@@ -50,9 +51,10 @@ class AppModule {
     @Singleton
     fun provideMovieRepository(
         @AuthenticatedService movieService: MovieService,
-        movieDao: MovieDao
+        movieDao: MovieDao,
+        bookmarkDao: BookmarkDao
     ): MovieRepository {
-        return MovieRepositoryImpl(movieService, movieDao)
+        return MovieRepositoryImpl(movieService, movieDao, bookmarkDao)
     }
 
     @Provides
@@ -173,6 +175,11 @@ class AppModule {
     @Provides
     fun provideMovieDao(movieDatabase: MovieDatabase): MovieDao {
         return movieDatabase.movieDao()
+    }
+
+    @Provides
+    fun provideBookmarkDao(movieDatabase: MovieDatabase): BookmarkDao {
+        return movieDatabase.bookmarkDao()
     }
 
 }

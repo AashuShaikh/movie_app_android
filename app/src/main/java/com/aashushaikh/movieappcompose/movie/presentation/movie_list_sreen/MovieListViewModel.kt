@@ -6,6 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aashushaikh.movieappcompose.movie.domain.repositories.MovieRepository
+import com.aashushaikh.movieappcompose.movie.presentation.mapper.toMovieDetailUi
+import com.aashushaikh.movieappcompose.movie.presentation.movie_detail_screen.MovieDetailState
 import com.aashushaikh.movieappcompose.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,6 +26,7 @@ class MovieListViewModel @Inject constructor(
 
     private var _movieListState = MutableStateFlow(MovieListState())
     val movieListState = _movieListState.asStateFlow()
+
 //        .onStart { getMoviesList() }
 //        .stateIn(
 //            viewModelScope,
@@ -39,7 +42,13 @@ class MovieListViewModel @Inject constructor(
         when(action){
             is MovieListAction.OnMovieClicked -> {}
             is MovieListAction.OnSearchQueryChanged -> {}
-            is MovieListAction.OnTabSelected -> {}
+            is MovieListAction.OnTabSelected -> {
+                _movieListState.update {
+                    it.copy(
+                        selectedTabIndex = action.index
+                    )
+                }
+            }
         }
     }
 
@@ -69,4 +78,5 @@ class MovieListViewModel @Inject constructor(
             }
         }
     }
+
 }

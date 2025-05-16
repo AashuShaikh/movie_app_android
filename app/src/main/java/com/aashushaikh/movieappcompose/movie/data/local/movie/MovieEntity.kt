@@ -1,9 +1,7 @@
-package com.aashushaikh.movieappcompose.movie.data.local
+package com.aashushaikh.movieappcompose.movie.data.local.movie
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
 //@Serializable
 //data class MovieEntity(

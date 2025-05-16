@@ -18,6 +18,8 @@ kotlinSerialization = "1.8.0"
 
 room_version = "2.7.1"
 
+compose_version = "1.6.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -43,6 +45,8 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 android-room = {group = "androidx.room", name = "room-runtime", version.ref = "room_version"}
 android-room-compiler = {group = "androidx.room", name = "room-compiler", version.ref = "room_version"}
+
+extended-icons = {group = "androidx.compose.material", name = "material-icons-extended", version.ref = "compose_version"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

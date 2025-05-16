@@ -9,5 +9,6 @@ interface MovieRepository {
 
     suspend fun getMoviesList(): Flow<Resource<List<Movie>>>
     suspend fun getMovieById(movieId: Int): Flow<Resource<MovieDetail>>
+    suspend fun updateBookmark(movieId: Int)
 
 }

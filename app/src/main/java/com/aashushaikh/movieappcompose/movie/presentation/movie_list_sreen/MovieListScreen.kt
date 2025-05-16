@@ -237,36 +237,36 @@ private fun MovieListScreen(
 
 }
 
-private val movies = (0..100).map {
-    Movie(
-        id = it,
-        adult = false,
-        backdrop_path = "/xUkUZ8eOnrOnnJAfusZUqKYZiDu.jpg",
-        genre_ids = listOf(1, 2, 3),
-        original_language = "en",
-        original_title = "A Working Man",
-        overview = "Levon Cade left behind a decorated military career in the black ops to live a simple life working construction. But when his boss's daughter, who is like family to him, is taken by human traffickers, his search to bring her home uncovers a world of corruption far greater than he ever could have imagined.",
-        popularity = 798.7089,
-        poster_path = "/xUkUZ8eOnrOnnJAfusZUqKYZiDu.jpg",
-        release_date = "2025-03-2",
-        title = "A Working Man",
-        video = false,
-        vote_average = 6.307,
-        vote_count = 429
-    )
-}
+//private val movies = (0..100).map {
+//    Movie(
+//        id = it,
+//        adult = false,
+//        backdrop_path = "/xUkUZ8eOnrOnnJAfusZUqKYZiDu.jpg",
+//        genre_ids = listOf(1, 2, 3),
+//        original_language = "en",
+//        original_title = "A Working Man",
+//        overview = "Levon Cade left behind a decorated military career in the black ops to live a simple life working construction. But when his boss's daughter, who is like family to him, is taken by human traffickers, his search to bring her home uncovers a world of corruption far greater than he ever could have imagined.",
+//        popularity = 798.7089,
+//        poster_path = "/xUkUZ8eOnrOnnJAfusZUqKYZiDu.jpg",
+//        release_date = "2025-03-2",
+//        title = "A Working Man",
+//        video = false,
+//        vote_average = 6.307,
+//        vote_count = 429
+//    )
+//}
 
-@Preview
-@Composable
-private fun MovieListScreenPreview() {
-    MovieListScreen(
-        state = MovieListState(
-            searchResults = movies
-        ),
-        onAction = {}
-    )
-
-}
+//@Preview
+//@Composable
+//private fun MovieListScreenPreview() {
+//    MovieListScreen(
+//        state = MovieListState(
+//            searchResults = movies
+//        ),
+//        onAction = {}
+//    )
+//
+//}
 
 //@Composable
 //fun MovieListScreen(navController: NavController, viewModel: MovieListViewModel, modifier: Modifier = Modifier) {

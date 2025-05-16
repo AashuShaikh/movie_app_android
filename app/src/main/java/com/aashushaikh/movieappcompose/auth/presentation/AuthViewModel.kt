@@ -55,7 +55,7 @@ class AuthViewModel @Inject constructor(
             }
             is AuthUiEvents.TogglePasswordVisibility -> {
                 _authState.update {
-                    it.copy(isPasswordVisible = !it.isPasswordVisible)
+                    it.copy(isPasswordVisible = event.visibility)
                 }
             }
         }

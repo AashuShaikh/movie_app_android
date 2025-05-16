@@ -2,7 +2,7 @@ package com.aashushaikh.movieappcompose.movie.data.mappers
 
 import com.aashushaikh.movieappcompose.movie.data.dto.MovieDetailResponseDto
 import com.aashushaikh.movieappcompose.movie.data.dto.MovieResponseDto
-import com.aashushaikh.movieappcompose.movie.data.local.MovieEntity
+import com.aashushaikh.movieappcompose.movie.data.local.movie.MovieEntity
 import com.aashushaikh.movieappcompose.movie.domain.models.Movie
 import com.aashushaikh.movieappcompose.movie.domain.models.MovieDetail
 
@@ -12,7 +12,7 @@ fun MovieResponseDto.toMovieListItem(): Movie {
         adult = adult,
         backdrop_path = backdrop_path,
         genre_ids = genre_ids,
-        id = id,
+        movieId = id,
         original_language = original_language,
         original_title = original_title,
         overview = overview,
@@ -31,7 +31,7 @@ fun MovieEntity.toMovieListItem(): Movie {
         adult = adult,
         backdrop_path = backdrop_path,
         genre_ids = genre_ids,
-        id = id,
+        movieId = movieId,
         original_language = original_language,
         original_title = original_title,
         overview = overview,
@@ -50,7 +50,7 @@ fun Movie.toMovieEntity(): MovieEntity {
         adult = adult,
         backdrop_path = backdrop_path,
         genre_ids = genre_ids,
-        movieId = id,
+        movieId = movieId,
         original_language = original_language,
         original_title = original_title,
         overview = overview,
@@ -91,7 +91,7 @@ fun MovieEntity.toMovieDetail(): MovieDetail {
         adult = adult,
         backdrop_path = backdrop_path,
         genres = emptyList(),
-        movieId = id,
+        movieId = movieId,
         origin_country = emptyList(),
         original_language = original_language,
         original_title = original_title,
